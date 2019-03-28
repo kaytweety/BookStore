@@ -1,0 +1,78 @@
+<!--<div class="container">
+    <h1>Hero Form</h1>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
+ 
+      <div class="form-group">
+        <label for="alterEgo">Alter Ego</label>
+        <input type="text" class="form-control" id="alterEgo">
+      </div>
+ 
+      <button type="submit" class="btn btn-success">Submit</button>
+ 
+    </form>
+</div>-->
+<button class="default" routerLink="/showbook">Back</button>
+<div class="card">
+<h1>Add Book</h1>
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="col-md-6">
+<div class="form-group">
+<label>
+    Book Name
+</label>
+    <input type="text" class="form-control"  formControlName="bookName" [ngClass]="{ 'is-invalid': submitted && f.bookName.errors }"/>
+    <div *ngIf="submitted && f.bookName.errors" class="invalid-feedback">
+                       <div *ngIf="f.bookName.errors.required" class="text-danger">Book Name is required</div>
+                       <div *ngIf="f.bookName.errors.pattern" class="text-danger">Book Name must be alphabetic characters only.</div>
+    </div>
+</div>
+<div class="form-group">
+<label>
+    Author Name
+</label>
+    <input type="text" class="form-control"  formControlName="authorName" [ngClass]="{ 'is-invalid': submitted && f.authorName.errors }"/>
+    <div *ngIf="submitted && f.authorName.errors" class="invalid-feedback">
+                       <div *ngIf="f.authorName.errors.required" class="text-danger">Author Name is required</div>
+                       <div *ngIf="f.authorName.errors.pattern" class="text-danger">Author Name must be alphabetic characters only.</div>
+    </div>
+</div>
+<div class="form-group">
+<label>
+    Isbn
+</label>
+    <input type="text" class="form-control"  formControlName="isbn" [ngClass]="{ 'is-invalid': submitted && f.isbn.errors }"/>
+    <div *ngIf="submitted && f.isbn.errors" class="invalid-feedback">
+                       <div *ngIf="f.isbn.errors.required" class="text-danger">Isbn is required</div>
+                       <div *ngIf="f.isbn.errors.pattern" class="text-danger">Please enter Valid Isbn "e.g.123-456-7890"</div>
+    </div>
+</div>
+<div class="form-group">
+<label>
+    No Copies
+</label>
+    <input type="text" class="form-control"  formControlName="no_copies" [ngClass]="{ 'is-invalid': submitted && f.no_copies.errors }"/>
+    <div *ngIf="submitted && f.no_copies.errors" class="invalid-feedback">
+                       <div *ngIf="f.no_copies.errors.required" class="text-danger">No Copies is required</div>
+                       <div *ngIf="f.no_copies.errors.minlength" class="text-danger">No Copies can not access 999999</div>
+                       <div *ngIf="f.no_copies.errors.pattern" class="text-danger">Please enter numeric values only</div>
+    </div>
+</div>
+<div class="form-group">
+<label>
+    Price
+</label>
+    <input type="text" class="form-control"  formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors }"/>
+    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                       <div *ngIf="f.price.errors.required" class="text-danger">Price is required</div>
+                       <div *ngIf="f.price.errors.pattern" class="text-danger">Please Enter Numeric Values only</div>
+    </div>
+</div>
+
+<div class="form-group">
+   <button [disabled]="loading" class="col-md-12 btn btn-success">Submit</button>
+</div>
+</form>
+    </div>
