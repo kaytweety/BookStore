@@ -6,7 +6,7 @@ import { BooksComponent } from './books/books.component';
 const routes: Routes = [
     { path: 'insertbook', component: AddFormComponent },
     { path: 'showbook', component: BooksComponent },
-    { path: 'insertbook/:id', component: AddFormComponent },
+    { path: 'updatebook/:id', component: AddFormComponent },
     { path: '', redirectTo: '/showbook', pathMatch: 'full' },
     
 ];

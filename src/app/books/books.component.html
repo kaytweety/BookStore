@@ -1,17 +1,18 @@
+<button class="default" routerLink="/insertbook">Insert</button>
+<div *ngFor="let book of books">
+    <div class=card>
+        <div class=container [class.selected]="book === selectedBook" (click)="onSelect(book)">
+            <div>
+                <input type="image" src="assets/img/delete.png" align="right" alt="Delete" widht="45" height="45"
+                    (click)="deleteBook(book.id)" />
+                <a [routerLink]="['/updatebook', book.id]">
+                    <input type="image" src="assets/img/edit.png" align="right" alt="Edit" widht="45" height="50">
+                </a>
+            </div>
 
-   <button class="default" routerLink="/insertbook">Insert</button>
-    <div *ngFor="let book of books">
-        <div class=card>
-         <div class=container [class.selected]= "book === selectedBook" (click)="onSelect(book)">
-          <div>
-           <input type="image" src="assets/img/delete.png" align="right" alt="Delete" widht="45" height="45"/>
-              <a [routerLink]="['/insertbook', book.id]">
-              <input type="image" src="assets/img/edit.png" align="right" alt="Edit" widht="45" height="50">
-              </a>
-          </div>
-       
-          <h2 style="font-size: 32px;">{{book.name}}</h2>
-          <p>Autor Name: {{book.author}}, Isbn: {{book.isbn}}, No Copies: {{book.no_copies}}, Price: {{book.price}}</p>
-         </div>
+            <h2 style="font-size: 32px;">{{book.name}}</h2>
+            <p>Autor Name: {{book.author}}, Isbn: {{book.isbn}}, No Copies: {{book.no_copies}}, Price: {{book.price}}
+            </p>
         </div>
-   </div>
+    </div>
+</div>

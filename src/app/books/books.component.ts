@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Book } from '../book';
-import { BOOKS } from '../mock-books';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-books',
@@ -11,34 +9,36 @@ import { BOOKS } from '../mock-books';
 })
 export class BooksComponent implements OnInit {
 
-    books = BOOKS;
-    selectedBook: Book;
-  
-  
-    onSelect(book: Book): void {
+    public selectedBook: Book;
+    public books:Book[] = null;
+
+    public constructor(private bookService: BookService) {}
+      
+    public onSelect(book: Book): void {
         this.selectedBook = book;
     }
-  constructor(private route: ActivatedRoute) {
-      /*const id: string = route.snapshot.params.id;
-      console.log(this.id);*/
-  }
 
-  ngOnInit() {
+    public ngOnInit():any {
+      this.bookService.fetchAllBook().subscribe((books:any) => {
+          this.books= books;
+      },error => {
+        console.log("Error :- " + JSON.stringify(error));
+      });
       
-      /*this.sub = this.route
-      .data
-      .subscribe(v => console.log(v));*/
-      
-//      this.sub = this.route.params.subscribe(params => {
-//          this.id = +params['id'];
-//          console.log(this.id);
-//      });
-      
-      this.sub = this.route.params.subscribe(params => {
-        this.id = params['id'];
+     }
+
+     public deleteBook(id : number) {
+          // if(confirm("Are you sure to delete?")) {
+          //     this.bookService.deleteBook(id);
+          // }
+          this.bookService.deleteBook(id).subscribe(() => {
+            this.loadAllBooks()
+          });
+      }
+
+      private loadAllBooks() {
+        this.bookService.fetchAllBook().subscribe((books: any) => {
+            this.books = books;
         });
-        console.log(this.id);
-
-  }
-
+    }
 }
