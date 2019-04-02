@@ -29,12 +29,7 @@ export class BookService {
   }
 
   public updateBook(book: Book): any {
-    for (var i = 0; i < this.books.length; i++) {
-      if (this.books[i].id == book.id) {
-        this.books[i] = book;
-        break;
-      }
-    }
+    
     return this.http.put(this.domain + '/book/%7Bid%7D?id=' + book.id, book);
   }
 

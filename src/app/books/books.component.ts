@@ -28,9 +28,6 @@ export class BooksComponent implements OnInit {
   }
 
   public deleteBook(id: number) {
-    // if(confirm("Are you sure to delete?")) {
-    //     this.bookService.deleteBook(id);
-    // }
     this.bookService.deleteBook(id).subscribe(() => {
       this.loadAllBooks()
     });
