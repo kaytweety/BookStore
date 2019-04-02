@@ -55,17 +55,6 @@ export class AddFormComponent implements OnInit {
    
          }
 
-
-        //  this.books = this.bookService.fetchAllBook();
-        //  if (this.id !== null) {
-        //      for (var i = 0; i < this.books.length; i++) {
-        //          if (this.books[i].id == this.id) {
-        //              this.book = this.books[i];
-        //              break;
-        //          }
-        //      }
-        //  }
-        //  console.log(this.books);
      }
      // convenient getter for easy access to form fields
      get f() { return this.bookForm.controls; }

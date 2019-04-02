@@ -9,36 +9,36 @@ import { BookService } from '../book.service';
 })
 export class BooksComponent implements OnInit {
 
-    public selectedBook: Book;
-    public books:Book[] = null;
+  public selectedBook: Book;
+  public books: Book[] = null;
 
-    public constructor(private bookService: BookService) {}
-      
-    public onSelect(book: Book): void {
-        this.selectedBook = book;
-    }
+  public constructor(private bookService: BookService) { }
 
-    public ngOnInit():any {
-      this.bookService.fetchAllBook().subscribe((books:any) => {
-          this.books= books;
-      },error => {
-        console.log("Error :- " + JSON.stringify(error));
-      });
-      
-     }
+  public onSelect(book: Book): void {
+    this.selectedBook = book;
+  }
 
-     public deleteBook(id : number) {
-          // if(confirm("Are you sure to delete?")) {
-          //     this.bookService.deleteBook(id);
-          // }
-          this.bookService.deleteBook(id).subscribe(() => {
-            this.loadAllBooks()
-          });
-      }
+  public ngOnInit(): any {
+    this.bookService.fetchAllBook().subscribe((books: any) => {
+      this.books = books;
+    }, error => {
+      console.log("Error :- " + JSON.stringify(error));
+    });
 
-      private loadAllBooks() {
-        this.bookService.fetchAllBook().subscribe((books: any) => {
-            this.books = books;
-        });
-    }
+  }
+
+  public deleteBook(id: number) {
+    // if(confirm("Are you sure to delete?")) {
+    //     this.bookService.deleteBook(id);
+    // }
+    this.bookService.deleteBook(id).subscribe(() => {
+      this.loadAllBooks()
+    });
+  }
+
+  private loadAllBooks() {
+    this.bookService.fetchAllBook().subscribe((books: any) => {
+      this.books = books;
+    });
+  }
 }
