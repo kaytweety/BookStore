@@ -1,18 +1,26 @@
 <button class="default" routerLink="/insertbook">Insert</button>
 <div *ngFor="let book of books">
-    <div class=card>
-        <div class=container [class.selected]="book === selectedBook" (click)="onSelect(book)">
-            <div>
-                <input type="image" src="assets/img/delete.png" align="right" alt="Delete" widht="45" height="45"
-                    (click)="deleteBook(book.id)" />
-                <a [routerLink]="['/updatebook', book.id]">
-                    <input type="image" src="assets/img/edit.png" align="right" alt="Edit" widht="45" height="50">
-                </a>
+    <div class=card style="width: 50%;">
+        <div class="container" [class.selected]="book === selectedBook" (click)="onSelect(book)">
+            <h2 style="font-size: 32px; margin-top: 0px; margin-bottom: 0px; margin-left: 15px;">{{book.name}}</h2>
+            <div class="leftDiv">
+                <span style="display: inherit;"><b>Autor Name: {{book.author}}</b></span>
+                <span style="display: inherit;"><b>Isbn: {{book.isbn}}</b></span>
+                <span style="display: inherit;"><b>No Copies: {{book.no_copies}}</b></span>
+                <span style="display: inherit;"><b>Price: {{book.price}}</b></span>
             </div>
-
-            <h2 style="font-size: 32px;">{{book.name}}</h2>
-            <p>Autor Name: {{book.author}}, Isbn: {{book.isbn}}, No Copies: {{book.no_copies}}, Price: {{book.price}}
-            </p>
+            <div class="rightDiv">
+                <div style="margin-top: -15px;">
+                    <img id="topImage" src={{book.file_info.file_url}} alt="Place image title" width="145" height="145">
+                </div>
+                <div>
+                    <input id="deleteImage" type="image" src="assets/img/delete.png" align="right" alt="Delete" width="48" height="48"
+                        (click)="deleteBook(book.id)" />
+                    <a [routerLink]="['/updatebook', book.id]">
+                        <input id="editImage" type="image" src="assets/img/edit.png" align="right" alt="Edit" widhth="45" height="50">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

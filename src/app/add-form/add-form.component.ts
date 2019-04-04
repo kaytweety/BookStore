@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Book } from '../book';
+import { FileInfo } from '../file_info';
 import { BookService } from '../book.service';
 
 @Component({
@@ -9,21 +10,24 @@ import { BookService } from '../book.service';
     templateUrl: './add-form.component.html',
     styleUrls: ['./add-form.component.css']
 })
-
 export class AddFormComponent implements OnInit {
-     bookForm: FormGroup;
-     submitted = false;
-     id: number;
-     sub: any;
-     public msgPage: String;
 
-     book: Book;
+    public bookForm: FormGroup;
+    public submitted:boolean = false;
+    public id:number;
+    public sub: any;
+    public msgPage: String;
+    public book: Book;
+    public fileInfo:FileInfo;
+    public imageUrl: any;
+    
+    public books: Book[] = null;
 
-     public books: Book[] = null;
-
-     public constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private bookService: BookService) {
-         this.book = new Book();
-     }
+    public constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private bookService: BookService) {
+        this.book = new Book();
+        this.fileInfo = new FileInfo();
+        this.imageUrl = this.fileInfo.file_url;
+    }
 
      ngOnInit() {
          console.log(this.router.url);
