@@ -15,9 +15,8 @@ export class BookService {
   private books: any = BOOKS;
 
   book: Book;
-  id: number;
 
-  thumbnailFetchUrl: string = "https://south/generateThumbnail?width=100&height=100";
+  public imageUrl: any;
 
   public constructor(private http: HttpClient, private router: Router) { }
 
